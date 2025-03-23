@@ -1,26 +1,105 @@
 [
   {
+    "id": 1,
+    "title": "The Silent Forest",
+    "author": "John Smith",
+    "summary": "A captivating narrative exploring the mysteries of the silent forest.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 1",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Echoes of the Past",
+    "author": "Mary Johnson",
+    "summary": "A captivating narrative exploring the echoes of the past.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 2",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Winds of Change",
+    "author": "Robert Brown",
+    "summary": "A captivating narrative exploring the winds of change.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 3",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Journey to the Unknown",
+    "author": "Patricia Davis",
+    "summary": "A captivating narrative exploring a journey to the unknown.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 4",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Mystery of the Old House",
+    "author": "Michael Miller",
+    "summary": "A captivating narrative exploring the mystery of the old house.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 5",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Secrets of the Night",
+    "author": "Linda Wilson",
+    "summary": "A captivating narrative exploring the secrets of the night.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 6",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
     "id": 7,
     "title": "The Lost Kingdom",
     "author": "David Moore",
     "summary": "A captivating narrative exploring the mysteries of a lost kingdom.",
-    "rating": "2",
-    "reviews": []
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 7",
+        "text": "This book was engaging and well-written."
+      }
+    ]
   },
   {
     "id": 8,
     "title": "Shadows in the Dark",
     "author": "Barbara Taylor",
     "summary": "A captivating narrative exploring the shadows in the dark.",
-    "rating": "3",
+    "rating": 5,
     "reviews": [
       {
         "reviewer": "Reviewer 8",
         "text": "This book was engaging and well-written."
-      },
-      {
-        "reviewer": "ddas",
-        "text": "dasdas"
       }
     ]
   },
@@ -1219,42 +1298,5 @@
         "text": "This book was engaging and well-written."
       }
     ]
-  },
-  {
-    "title": "test",
-    "author": "test",
-    "summary": "test",
-    "rating": "2",
-    "reviews": [
-      {
-        "reviewer": "",
-        "text": "test"
-      }
-    ],
-    "id": 101
-  },
-  {
-    "title": "ewq",
-    "author": "ew",
-    "summary": "ew",
-    "rating": "2",
-    "reviews": [],
-    "id": 102
-  },
-  {
-    "title": "ds",
-    "author": "ds",
-    "summary": "ds2",
-    "rating": "2",
-    "reviews": [],
-    "id": 103
-  },
-  {
-    "title": "ds",
-    "author": "ds",
-    "summary": "ds",
-    "rating": "2",
-    "reviews": [],
-    "id": 104
   }
 ]

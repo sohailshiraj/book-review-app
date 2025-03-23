@@ -27,8 +27,8 @@ const idValidation = Joi.object({
 const getBooksValidation = Joi.object({
     title: Joi.string(),
     author: Joi.string(),
-    minRating: Joi.number().min(1).max(5),
-    maxRating: Joi.number().min(1).max(5),
+    minRating: Joi.number(),
+    maxRating: Joi.number(),
     sortBy: Joi.string(),
     page: Joi.number(),
     pageSize: Joi.number()

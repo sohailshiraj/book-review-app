@@ -37,6 +37,10 @@ export default function BookList() {
   });
 
   useEffect(() => {
+    fetchAllBooks();
+  }, [page, rowsPerPage, filters, sortOption]);
+
+  const fetchAllBooks = () => {
     fetchBooks(filters, sortOption, page + 1, rowsPerPage)
       .then((response) => {
         setBooks(response.data);
@@ -45,7 +49,7 @@ export default function BookList() {
       .catch((error) => {
         toast.error('Failed to fetch books. Please try again later.'); // Error toast
       });
-  }, [page, rowsPerPage, filters, sortOption]);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -59,7 +63,7 @@ export default function BookList() {
   const handleDelete = async (id) => {
     try {
       await deleteBook(id);
-      setBooks(books.filter((book) => book.id !== id));
+      fetchAllBooks();
       toast.success('Book deleted successfully!'); // Success toast
     } catch (error) {
       toast.error('Failed to delete book. Please try again.'); // Error toast
@@ -112,6 +116,11 @@ export default function BookList() {
           onChange={(e) => handleFilterChange('minRating', e.target.value)}
           sx={{ marginRight: 1 }}
           fullWidth
+          InputProps={{
+            inputProps: {
+              min: 1,
+            },
+          }}
         />
       </Grid>
       <Grid size={{ xs: 6, md: 2 }}>
@@ -123,6 +132,11 @@ export default function BookList() {
           onChange={(e) => handleFilterChange('maxRating', e.target.value)}
           sx={{ marginRight: 1 }}
           fullWidth
+          InputProps={{
+            inputProps: {
+              min: 1,
+            },
+          }}
         />
       </Grid>
       <Grid size={{ xs: 12, md: 2 }}></Grid>
