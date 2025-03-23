@@ -1,0 +1,24 @@
+{
+  "name": "book-review-recommendation-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm --prefix apps/frontend start\" \"npm --prefix apps/backend run dev\"",
+    "install:all": "npm install && npm install --workspaces",
+    "build:all": "npm run install:all && npm run build:frontend",
+    "build:frontend": "npm run build --workspace apps/frontend",
+    "start:frontend": "npm run start --workspace apps/frontend",
+    "start:backend": "npm run start:prod --workspace apps/backend"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  }
+}

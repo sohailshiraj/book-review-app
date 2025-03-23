@@ -1,0 +1,1388 @@
+# Engineering Take-Home Assessment
+
+# **Project: Book Review & Recommendation App**
+
+## **Overview**
+
+Develop a small web application for managing a collection of books, including their reviews and ratings. The project has two parts:
+
+- **Backend:** A Node.js (Express-based) REST API to handle CRUD operations.
+- **Frontend:** A React application that consumes the API, displays the list of books, and lets users add, edit, and remove entries as well as view details.
+
+Push your changes to a GitHub repo and send a link to it! The `README` file should explain how to get the repo setup and running locally.
+
+<aside>
+ℹ️
+
+Please do not spend more than 10 hours on this. If you don’t finish all the requirements within 10 hours, thats fine — just submit what you have!
+
+</aside>
+
+## **Requirements**
+
+### **1. Backend (Node.js & Express)**
+
+- **RESTful API Endpoints:**
+  - **GET /books**: Retrieve a list of all books.
+  - **GET /books/:id**: Retrieve detailed information for a specific book.
+  - **POST /books**: Add a new book.
+  - **PUT /books/:id**: Update details for an existing book.
+  - **DELETE /books/:id**: Remove a book.
+- **Data Model:** Each book should have the following fields:
+  - **id** (a unique identifier)
+  - **title** (string)
+  - **author** (string)
+  - **summary** (string)
+  - **rating** (number between 1 and 5)
+  - **reviews** (an array of review objects or strings; include at least a review text and optionally the reviewer's name)
+- **Storage:** Use an in-memory data store or file-based persistence (no need for a full database unless desired).
+- **Validation & Error Handling:** Validate incoming data (e.g., ensure rating is within range) and return appropriate HTTP status codes and error messages.
+
+### **2. Frontend (React)**
+
+- **Display & Interaction:**
+  - Show a list of books with basic information (e.g., title, author, rating).
+  - Allow users to click on a book to view more detailed information (including the summary and reviews).
+  - Include a form to add a new book.
+  - Allow users to update or delete existing books.
+  - _Bonus: Use routes to power the UI (instead of just state)._
+- **Filtering & Sorting (Optional/Bonus):**
+  - Enable filtering (e.g., by rating or search by title/author).
+  - Provide sorting options (e.g., by rating, alphabetically by title).
+- **Design & Responsiveness:**
+  - The UI should be clean and responsive.
+  - You’re free to use a UI library (e.g., Material-UI, Bootstrap) or create your own styling.
+- **Error & Loading States:** Provide user feedback for actions like saving data, errors, or when data is loading.
+
+### **3. Additional Considerations**
+
+- **Code Organization:** Write clear, modular, and well-documented code.
+- **Creativity:** You are encouraged to add a creative twist that showcases your strengths (e.g., an interesting UI component, additional API filtering options, or client-side caching).
+- **README:** Include a README file with:
+  - Setup and run instructions for both the backend and frontend.
+  - A brief explanation of your design decisions.
+  - Any assumptions or additional features you’ve implemented.
+
+### **4. What you need to submit**
+
+A link to the GitHub repo that I can set up and run!
+
+---
+
+### **Evaluation Criteria**
+
+- **Functionality:** Does the application meet the core requirements?
+- **Code Quality:** Is the code modular, clean, and well-organized? Is proper error handling in place?
+- **UI/UX:** Is the frontend intuitive and responsive?
+- **Documentation:** Is there a clear README that explains how to set up and run the project?
+
+---
+
+## Data
+
+Below is an example JSON array containing 100 book objects. Each book has an `id`, a unique `title`, an `author`, a brief `summary` (derived from its title), a `rating` (cycled between 3, 4, and 5), and a single review. You can adjust the content as needed.
+
+```json
+[
+  {
+    "id": 1,
+    "title": "The Silent Forest",
+    "author": "John Smith",
+    "summary": "A captivating narrative exploring the mysteries of the silent forest.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 1",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Echoes of the Past",
+    "author": "Mary Johnson",
+    "summary": "A captivating narrative exploring the echoes of the past.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 2",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Winds of Change",
+    "author": "Robert Brown",
+    "summary": "A captivating narrative exploring the winds of change.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 3",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Journey to the Unknown",
+    "author": "Patricia Davis",
+    "summary": "A captivating narrative exploring a journey to the unknown.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 4",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Mystery of the Old House",
+    "author": "Michael Miller",
+    "summary": "A captivating narrative exploring the mystery of the old house.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 5",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Secrets of the Night",
+    "author": "Linda Wilson",
+    "summary": "A captivating narrative exploring the secrets of the night.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 6",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "The Lost Kingdom",
+    "author": "David Moore",
+    "summary": "A captivating narrative exploring the mysteries of a lost kingdom.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 7",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Shadows in the Dark",
+    "author": "Barbara Taylor",
+    "summary": "A captivating narrative exploring the shadows in the dark.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 8",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Rise of the Phoenix",
+    "author": "James Anderson",
+    "summary": "A captivating narrative exploring the rise of the phoenix.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 9",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Under the Midnight Sky",
+    "author": "Elizabeth Thomas",
+    "summary": "A captivating narrative exploring life under the midnight sky.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 10",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Whispers in the Wind",
+    "author": "Christopher Jackson",
+    "summary": "A captivating narrative exploring the whispers in the wind.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 11",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Dreams of Tomorrow",
+    "author": "Jennifer White",
+    "summary": "A captivating narrative exploring dreams of tomorrow.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 12",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Path of the Wanderer",
+    "author": "Matthew Harris",
+    "summary": "A captivating narrative exploring the path of the wanderer.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 13",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "The Final Hour",
+    "author": "Susan Martin",
+    "summary": "A captivating narrative exploring the events of the final hour.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 14",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Beyond the Horizon",
+    "author": "Daniel Thompson",
+    "summary": "A captivating narrative exploring what lies beyond the horizon.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 15",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Voices from the Past",
+    "author": "Jessica Garcia",
+    "summary": "A captivating narrative exploring voices from the past.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 16",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "title": "The Forgotten City",
+    "author": "Thomas Martinez",
+    "summary": "A captivating narrative exploring the secrets of a forgotten city.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 17",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Mirage of Hope",
+    "author": "Sarah Robinson",
+    "summary": "A captivating narrative exploring a mirage of hope.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 18",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "title": "Labyrinth of Lies",
+    "author": "Charles Clark",
+    "summary": "A captivating narrative exploring a labyrinth of lies.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 19",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Canvas of Life",
+    "author": "Karen Rodriguez",
+    "summary": "A captivating narrative exploring the canvas of life.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 20",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Edge of Reality",
+    "author": "Mark Lewis",
+    "summary": "A captivating narrative exploring the edge of reality.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 21",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "title": "A Spark in the Dark",
+    "author": "Nancy Lee",
+    "summary": "A captivating narrative exploring a spark in the dark.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 22",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "title": "River of Dreams",
+    "author": "Steven Walker",
+    "summary": "A captivating narrative exploring a river of dreams.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 23",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "title": "The Eternal Quest",
+    "author": "Betty Hall",
+    "summary": "A captivating narrative exploring an eternal quest.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 24",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "title": "Journey's End",
+    "author": "Paul Allen",
+    "summary": "A captivating narrative exploring a journey's end.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 25",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "title": "Reflections of Time",
+    "author": "Lisa Young",
+    "summary": "A captivating narrative exploring reflections of time.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 26",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "title": "Embers of Fate",
+    "author": "Donald Hernandez",
+    "summary": "A captivating narrative exploring the embers of fate.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 27",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "title": "The Cursed Treasure",
+    "author": "Sandra King",
+    "summary": "A captivating narrative exploring a cursed treasure.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 28",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "title": "Mystic Horizons",
+    "author": "George Wright",
+    "summary": "A captivating narrative exploring mystic horizons.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 29",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "title": "The Hidden Truth",
+    "author": "Ashley Lopez",
+    "summary": "A captivating narrative exploring the hidden truth.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 30",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "title": "Waves of Destiny",
+    "author": "Kenneth Hill",
+    "summary": "A captivating narrative exploring waves of destiny.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 31",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "title": "Shattered Illusions",
+    "author": "Donna Scott",
+    "summary": "A captivating narrative exploring shattered illusions.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 32",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "title": "The Last Frontier",
+    "author": "Ronald Green",
+    "summary": "A captivating narrative exploring the last frontier.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 33",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "title": "Mirrors of the Soul",
+    "author": "Carol Adams",
+    "summary": "A captivating narrative exploring mirrors of the soul.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 34",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "title": "The Burning Sky",
+    "author": "Jeffrey Baker",
+    "summary": "A captivating narrative exploring a burning sky.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 35",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "title": "Fragmented Memories",
+    "author": "Michelle Gonzalez",
+    "summary": "A captivating narrative exploring fragmented memories.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 36",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "title": "Rise of Legends",
+    "author": "Edward Nelson",
+    "summary": "A captivating narrative exploring the rise of legends.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 37",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "title": "The Enchanted Garden",
+    "author": "Dorothy Carter",
+    "summary": "A captivating narrative exploring an enchanted garden.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 38",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "title": "Secrets Unveiled",
+    "author": "Brian Mitchell",
+    "summary": "A captivating narrative exploring secrets that are unveiled.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 39",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "title": "Chronicles of the Lost",
+    "author": "Emily Perez",
+    "summary": "A captivating narrative exploring chronicles of the lost.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 40",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "title": "The Unseen World",
+    "author": "Paul Roberts",
+    "summary": "A captivating narrative exploring the unseen world.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 41",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "title": "Beyond the Veil",
+    "author": "Rebecca Turner",
+    "summary": "A captivating narrative exploring what lies beyond the veil.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 42",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "title": "Infinite Echoes",
+    "author": "Jason Phillips",
+    "summary": "A captivating narrative exploring infinite echoes.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 43",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "title": "The Last Melody",
+    "author": "Laura Campbell",
+    "summary": "A captivating narrative exploring the last melody.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 44",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "title": "Sands of Time",
+    "author": "Gary Parker",
+    "summary": "A captivating narrative exploring the sands of time.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 45",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "title": "The Majestic Journey",
+    "author": "Cynthia Evans",
+    "summary": "A captivating narrative exploring a majestic journey.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 46",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "title": "Fires of Rebellion",
+    "author": "Ryan Edwards",
+    "summary": "A captivating narrative exploring the fires of rebellion.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 47",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "title": "Heart of the Storm",
+    "author": "Angela Collins",
+    "summary": "A captivating narrative exploring the heart of the storm.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 48",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "title": "Dreamcatcher",
+    "author": "Frank Stewart",
+    "summary": "A captivating narrative exploring the mystery of a dreamcatcher.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 49",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "title": "The Wandering Soul",
+    "author": "Brenda Sanchez",
+    "summary": "A captivating narrative exploring the journey of a wandering soul.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 50",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "title": "A Tale of Two Worlds",
+    "author": "Scott Morris",
+    "summary": "A captivating narrative exploring a tale of two worlds.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 51",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "title": "Labyrinth of Shadows",
+    "author": "Anna Rogers",
+    "summary": "A captivating narrative exploring a labyrinth of shadows.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 52",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "title": "The Crystal Path",
+    "author": "Eric Reed",
+    "summary": "A captivating narrative exploring the crystal path.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 53",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "title": "Fragments of Destiny",
+    "author": "Amy Cook",
+    "summary": "A captivating narrative exploring fragments of destiny.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 54",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "title": "Silent Echo",
+    "author": "Jeremy Morgan",
+    "summary": "A captivating narrative exploring the concept of a silent echo.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 55",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "title": "The Whispering Woods",
+    "author": "Megan Bell",
+    "summary": "A captivating narrative exploring the mysteries of whispering woods.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 56",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "title": "Hidden Realms",
+    "author": "Larry Murphy",
+    "summary": "A captivating narrative exploring hidden realms beyond the ordinary.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 57",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "title": "Dance of the Stars",
+    "author": "Rachel Bailey",
+    "summary": "A captivating narrative exploring the dance of the stars.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 58",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "title": "Edge of Tomorrow",
+    "author": "Justin Rivera",
+    "summary": "A captivating narrative exploring the edge of tomorrow.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 59",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "title": "The Iron Promise",
+    "author": "Stephanie Cooper",
+    "summary": "A captivating narrative exploring an iron promise that endures.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 60",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "title": "Moonlight Sonata",
+    "author": "Brandon Richardson",
+    "summary": "A captivating narrative exploring the beauty of a moonlight sonata.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 61",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "title": "Mysteries of the Deep",
+    "author": "Theresa Cox",
+    "summary": "A captivating narrative exploring the mysteries lurking in the deep.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 62",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "title": "Windswept",
+    "author": "Scott Howard",
+    "summary": "A captivating narrative exploring lands that are windswept and wild.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 63",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "title": "The Timeless Quest",
+    "author": "Margaret Ward",
+    "summary": "A captivating narrative exploring a quest that is timeless.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 64",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "title": "A Flicker in the Dark",
+    "author": "Benjamin Torres",
+    "summary": "A captivating narrative exploring a faint flicker in the dark.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 65",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "title": "The Lost Artifact",
+    "author": "Julie Peterson",
+    "summary": "A captivating narrative exploring the mystery behind a lost artifact.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 66",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "title": "Veil of Secrets",
+    "author": "Alexander Gray",
+    "summary": "A captivating narrative exploring what lies behind a veil of secrets.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 67",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "title": "The Final Voyage",
+    "author": "Hannah Ramirez",
+    "summary": "A captivating narrative exploring a voyage that may be the final one.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 68",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "title": "Whispers of Eternity",
+    "author": "Zachary James",
+    "summary": "A captivating narrative exploring whispers that echo into eternity.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 69",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "title": "Shadows of the Past",
+    "author": "Victoria Watson",
+    "summary": "A captivating narrative exploring shadows cast by the past.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 70",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "title": "Crown of Thorns",
+    "author": "Patrick Brooks",
+    "summary": "A captivating narrative exploring the pain behind a crown of thorns.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 71",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "title": "Song of the River",
+    "author": "Diana Kelly",
+    "summary": "A captivating narrative exploring the song that a river sings.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 72",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "title": "Dawn of the Unknown",
+    "author": "Samuel Price",
+    "summary": "A captivating narrative exploring the dawn that reveals the unknown.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 73",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "title": "The Last Kingdom",
+    "author": "Olivia Bennett",
+    "summary": "A captivating narrative exploring the rise and fall of a kingdom.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 74",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "title": "Mystic River",
+    "author": "Jonathan Wood",
+    "summary": "A captivating narrative exploring the mysteries of a mystic river.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 75",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "title": "Dreams in the Mist",
+    "author": "Brittany Barnes",
+    "summary": "A captivating narrative exploring dreams obscured by mist.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 76",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "title": "The Iron Curtain",
+    "author": "Keith Ross",
+    "summary": "A captivating narrative exploring the mysteries behind the iron curtain.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 77",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "title": "Secrets of the Abyss",
+    "author": "Alicia Henderson",
+    "summary": "A captivating narrative exploring secrets that lie within an abyss.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 78",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "title": "The Midnight Journey",
+    "author": "Walter Coleman",
+    "summary": "A captivating narrative exploring a journey taken at midnight.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 79",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "title": "Guardians of the Past",
+    "author": "Kelly Jenkins",
+    "summary": "A captivating narrative exploring guardians who protect the past.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 80",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "title": "The Forgotten Scrolls",
+    "author": "Larry Powell",
+    "summary": "A captivating narrative exploring the secrets of forgotten scrolls.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 81",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "title": "The Final Frontier",
+    "author": "Julia Long",
+    "summary": "A captivating narrative exploring the challenges of the final frontier.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 82",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "title": "Riddles of the Sphinx",
+    "author": "Dennis Patterson",
+    "summary": "A captivating narrative exploring the riddles posed by the sphinx.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 83",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "title": "The Veiled Prophecy",
+    "author": "Karen Russell",
+    "summary": "A captivating narrative exploring a prophecy hidden behind a veil.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 84",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "title": "Stardust Memories",
+    "author": "Gerald Bryant",
+    "summary": "A captivating narrative exploring memories made of stardust.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 85",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "title": "Mysteries of the Moon",
+    "author": "Amber Griffin",
+    "summary": "A captivating narrative exploring the mysteries revealed by the moon.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 86",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "title": "The Wanderer's Diary",
+    "author": "Frank Perry",
+    "summary": "A captivating narrative exploring the diary of a wandering soul.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 87",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "title": "Legacy of Shadows",
+    "author": "Nicole Bennett",
+    "summary": "A captivating narrative exploring the legacy left in shadows.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 88",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "title": "The Hidden Realm",
+    "author": "Bruce Barnes",
+    "summary": "A captivating narrative exploring a realm hidden from plain sight.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 89",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "title": "Chronicles of Destiny",
+    "author": "Gloria Fisher",
+    "summary": "A captivating narrative exploring the chronicles that shape destiny.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 90",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "title": "Eternal Night",
+    "author": "Raymond Simmons",
+    "summary": "A captivating narrative exploring the depths of an eternal night.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 91",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "title": "Winds of Fate",
+    "author": "Alice Harrison",
+    "summary": "A captivating narrative exploring how winds shape fate.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 92",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "title": "The Cursed Voyage",
+    "author": "Wayne Harvey",
+    "summary": "A captivating narrative exploring a voyage cursed by fate.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 93",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "title": "Labyrinth of Dreams",
+    "author": "Erica Griffin",
+    "summary": "A captivating narrative exploring a labyrinth built from dreams.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 94",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "title": "Dancing with Destiny",
+    "author": "Sean Alexander",
+    "summary": "A captivating narrative exploring a dance with destiny.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 95",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 96,
+    "title": "The Silent Echo",
+    "author": "Valerie Warren",
+    "summary": "A captivating narrative exploring echoes in complete silence.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 96",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "title": "Threads of Time",
+    "author": "Philip Graham",
+    "summary": "A captivating narrative exploring the threads that weave time.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 97",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "title": "The Forgotten Legend",
+    "author": "Megan Stone",
+    "summary": "A captivating narrative exploring a legend long forgotten.",
+    "rating": 5,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 98",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "title": "Mystic Tides",
+    "author": "Henry Coleman",
+    "summary": "A captivating narrative exploring the mystic tides of fate.",
+    "rating": 3,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 99",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "title": "Beyond the Stars",
+    "author": "Christina Russell",
+    "summary": "A captivating narrative exploring what lies beyond the stars.",
+    "rating": 4,
+    "reviews": [
+      {
+        "reviewer": "Reviewer 100",
+        "text": "This book was engaging and well-written."
+      }
+    ]
+  }
+]
+```
