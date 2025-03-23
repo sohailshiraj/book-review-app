@@ -38,7 +38,10 @@ export default function BookDetails() {
         </Typography>
       </Grid>
       <Grid size={{ xs: 12, sm: 6 }}>
-        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+        <Typography
+          variant='h6'
+          sx={{ fontWeight: 'bold', wordBreak: 'break-all' }}
+        >
           Author:
         </Typography>
         <Typography>{book.author}</Typography>
@@ -53,7 +56,9 @@ export default function BookDetails() {
         <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
           Summary:
         </Typography>
-        <Typography sx={{ textAlign: 'justify' }}>{book.summary}</Typography>
+        <Typography sx={{ textAlign: 'justify', wordBreak: 'break-all' }}>
+          {book.summary}
+        </Typography>
       </Grid>
       {book.reviews?.length > 0 && (
         <Grid size={12}>
@@ -66,10 +71,16 @@ export default function BookDetails() {
               elevation={2}
               sx={{ padding: 2, marginBottom: 2 }}
             >
-              <Typography fontWeight='bold' color='primary'>
+              <Typography
+                fontWeight='bold'
+                color='primary'
+                sx={{ wordBreak: 'break-all' }}
+              >
                 {review.reviewer}
               </Typography>
-              <Typography>{review.text}</Typography>
+              <Typography sx={{ wordBreak: 'break-all' }}>
+                {review.text}
+              </Typography>
             </Paper>
           ))}
         </Grid>
